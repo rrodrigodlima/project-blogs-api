@@ -1,5 +1,5 @@
-const UserModel = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+const userModel = (sequelize, DataTypes) => {
+  const user = sequelize.define('User', {
     id: {
       primaryKey: true,
       autoIncrement: true,
@@ -23,7 +23,7 @@ const UserModel = (sequelize, DataTypes) => {
   },
 );
 
-  return User;
+  return user;
 };
 
-module.exports = UserModel;
+module.exports = userModel;

@@ -1,3 +1,3 @@
-const tokenAuth = require('./Token.auth');
+const tokenAuth = require('./token.auth');
 
 module.exports = { tokenAuth };
