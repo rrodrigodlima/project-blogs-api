@@ -12,13 +12,24 @@ const createUser = async (req, res) => {
       
     if (!user) throw Error;
 
-    const token = tokenAuth.createToken({ displayName, email, image });
+    const token = tokenAuth.creatseToken({ displayName, email, image });
 
     return res.status(201).json({ token });
   } catch ({ message }) {
     return res.status(500).json({ message });
   }
 };
+
+const getUsers = async (req, res) => {
+  try {
+    const users = await userService.findUsers();
+    return res.status(200).json(users);
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+};
+
 module.exports = {
   createUser,
+  getUsers,
 };
