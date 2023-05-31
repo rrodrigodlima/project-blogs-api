@@ -10,4 +10,10 @@ router.post(
   categoriesController.createCategory,
 );
 
+router.get(
+  '/',
+  validateJWT,
+  categoriesController.getCategories,
+);
+
 module.exports = router;

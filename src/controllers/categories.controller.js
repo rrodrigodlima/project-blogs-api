@@ -17,4 +17,23 @@ const createCategory = async (req, res) => {
   }
 };
 
-module.exports = { createCategory };
+const getCategories = async (req, res) => {
+  try {
+    const categories = await Category.findAll();
+
+    const formattedCategories = categories.map((category) => ({
+      id: category.id,
+      name: category.name,
+    }));
+
+    return res.status(200).json(formattedCategories);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { 
+  createCategory,
+  getCategories,
+};
