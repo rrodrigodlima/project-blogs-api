@@ -1,4 +1,4 @@
-const userModel = (sequelize, DataTypes) => {
+const User = (sequelize, DataTypes) => {
   const user = sequelize.define('User', {
     id: {
       primaryKey: true,
@@ -26,4 +26,4 @@ const userModel = (sequelize, DataTypes) => {
   return user;
 };
 
-module.exports = userModel;
+module.exports = User;

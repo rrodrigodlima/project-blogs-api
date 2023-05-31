@@ -1,5 +1,6 @@
 const { userService } = require('../services');
 const { tokenAuth } = require('../auth');
+const { User } = require('../models');
 
 const createUser = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ const createUser = async (req, res) => {
       
     if (!user) throw Error;
 
-    const token = tokenAuth.creatseToken({ displayName, email, image });
+    const token = tokenAuth.createToken({ displayName, email, image });
 
     return res.status(201).json({ token });
   } catch ({ message }) {
@@ -29,7 +30,30 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getUserById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findByPk(id, {
+      attributes: ['id', 'displayName', 'email', 'image'],
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        message: 'User does not exist',
+      });
+    }
+
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json({
+      message: 'Internal server error',
+    });
+  }
+};
+
 module.exports = {
   createUser,
   getUsers,
+  getUserById,
 };
