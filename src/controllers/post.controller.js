@@ -1,4 +1,4 @@
-const { createPost, findAll, findById } = require('../services/post.service');
+const { createPost, findAll, findById, update } = require('../services/post.service');
 
 const create = async (req, res) => {
   try {
@@ -31,8 +31,21 @@ const getById = async (req, res) => {
   }
 };
 
+const updatePost = async (req, res) => {
+  try {
+    const { params: { id }, body: { title, content }, currentPost } = req;
+    await update(id, { title, content });
+    const updatedPost = { ...currentPost, title, content };
+
+    return res.status(200).json(updatedPost);
+  } catch ({ message }) {
+    return res.status(500).json({ message });
+  }
+};
+
 module.exports = {
   create,
   getAllPosts,
   getById,
+  updatePost,
 };

@@ -4,6 +4,8 @@ const validateJWT = require('../middlewares/validateJWT');
 // const validatePostInputs = require('../validations/postInputValidations');
 const validatePost = require('../middlewares/validatePost');
 const { postController } = require('../controllers');
+const validateEdition = require('../middlewares/validateEdition');
+const validateUpdate = require('../middlewares/validateUpdate');
 
 const Route = express.Router();
 
@@ -24,6 +26,14 @@ Route.get(
   '/:id',
   validateJWT,
   postController.getById,
+);
+
+Route.put(
+  '/:id',
+  validateJWT,
+  validateEdition,
+  validateUpdate,
+  postController.updatePost,
 );
 
 module.exports = Route;

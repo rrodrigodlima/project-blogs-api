@@ -34,8 +34,12 @@ const findById = async (id) => BlogPost.findOne({
     { model: Category, as: 'categories' },
   ],
 });
+
+const update = async (id, data) => BlogPost.update(data, { where: { id } });
+
 module.exports = {
   createPost,
   findAll,
   findById,
+  update,
 };
