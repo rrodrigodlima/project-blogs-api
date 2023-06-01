@@ -14,4 +14,10 @@ Route.post(
   postController.create,
 );
 
+Route.get(
+  '/',
+  validateJWT,
+  postController.getAllPosts,
+);
+
 module.exports = Route;

@@ -1,4 +1,4 @@
-const { createPost } = require('../services/post.service');
+const { createPost, findAll } = require('../services/post.service');
 
 const create = async (req, res) => {
   try {
@@ -12,6 +12,13 @@ const create = async (req, res) => {
   }
 };
 
+const getAllPosts = async (_req, res) => {
+  const { type, message } = await findAll();
+
+  return res.status(type).json(message);
+};
+
 module.exports = {
   create,
+  getAllPosts,
 };
