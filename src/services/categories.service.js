@@ -1,4 +1,4 @@
-const Category = require('../models/Category');
+const { Category } = require('../models');
 
 const createCategory = async (name) => {
   try {
@@ -10,4 +10,13 @@ const createCategory = async (name) => {
   }
 };
 
-module.exports = { createCategory };
+const getAll = async () => {
+  const categories = await Category.findAll();
+
+  return categories;
+};
+
+module.exports = {
+  createCategory,
+  getAll,
+};

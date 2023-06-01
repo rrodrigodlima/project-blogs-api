@@ -1,4 +1,4 @@
-const BlogPost = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const BlogPost = sequelize.define('BlogPost', {
     id: {
       autoIncrement: true,
@@ -20,12 +20,12 @@ const BlogPost = (sequelize, DataTypes) => {
     published: {
       allowNull: false,
       type: DataTypes.DATE,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      defaultValue: new Date().toISOString(),
     },
     updated: {
       allowNull: false,
       type: DataTypes.DATE,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      defaultValue: new Date().toISOString(),
     },
   },
   {
@@ -42,5 +42,3 @@ BlogPost.associate = (models) => {
 };
   return BlogPost;
 };
-
-module.exports = BlogPost;
