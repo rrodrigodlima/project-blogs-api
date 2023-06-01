@@ -1,4 +1,4 @@
-const { createPost, findAll, findById, update } = require('../services/post.service');
+const { createPost, findAll, findById, update, remove } = require('../services/post.service');
 
 const create = async (req, res) => {
   try {
@@ -43,9 +43,20 @@ const updatePost = async (req, res) => {
   }
 };
 
+const removePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await remove(id);
+    return res.sendStatus(204);
+  } catch ({ message }) {
+    return res.status(500).json({ message });
+  }
+};
+
 module.exports = {
   create,
   getAllPosts,
   getById,
   updatePost,
+  removePost,
 };

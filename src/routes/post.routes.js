@@ -36,4 +36,11 @@ Route.put(
   postController.updatePost,
 );
 
+Route.delete(
+  '/:id',
+  validateJWT,
+  validateEdition,
+  postController.removePost,
+);
+
 module.exports = Route;

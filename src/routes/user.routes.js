@@ -21,6 +21,12 @@ Route.get(
   '/:id',
   validateJWT,
   userController.getUserById,
-  );
+);
+
+Route.delete(
+  '/me',
+  validateJWT,
+  userController.removeUser,
+);
 
 module.exports = Route;

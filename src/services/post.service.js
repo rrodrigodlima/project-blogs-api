@@ -37,9 +37,12 @@ const findById = async (id) => BlogPost.findOne({
 
 const update = async (id, data) => BlogPost.update(data, { where: { id } });
 
+const remove = async (id) => BlogPost.destroy({ where: { id } });
+
 module.exports = {
   createPost,
   findAll,
   findById,
   update,
+  remove,
 };

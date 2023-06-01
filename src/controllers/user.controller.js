@@ -1,6 +1,7 @@
 const { userService } = require('../services');
 const { tokenAuth } = require('../auth');
 const { User } = require('../models');
+const { remove } = require('../services/user.service');
 
 const createUser = async (req, res) => {
   try {
@@ -52,8 +53,19 @@ const getUserById = async (req, res) => {
   }
 };
 
+const removeUser = async (req, res) => {
+  try {
+    const { data: { id } } = req.payload;
+    await remove(id);
+    return res.sendStatus(204);
+  } catch ({ message }) {
+    return res.status(500).json({ message });
+  }
+};
+
 module.exports = {
   createUser,
   getUsers,
   getUserById,
+  removeUser,
 };
